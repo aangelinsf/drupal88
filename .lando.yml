@@ -1,0 +1,28 @@
+name: drupal-88
+recipe: drupal8
+config:
+  webroot: web
+  php: '7.3'
+  xdebug: true
+  conf:
+    php: config/php.ini
+excludes:
+  - html/core
+  - html/vendor
+  - html/profiles
+services:
+  appserver:
+    overrides:
+      environment:
+        PHP_IDE_CONFIG: "serverName=drupal-88.lndo.site"
+        PWD: /app
+  database:
+    portforward: 3499
+tooling:
+  drush:
+    cmd: /app/vendor/bin/drush
+  drupal:
+    cmd: /app/vendor/bin/drupal
+  phpunit:
+    service: appserver
+    cmd: /app/vendor/bin/phpunit
