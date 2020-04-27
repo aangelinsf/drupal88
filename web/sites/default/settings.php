@@ -755,14 +755,31 @@ $settings['entity_update_backup'] = TRUE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
-  'database' => 'drupal8',
-  'username' => 'drupal8',
-  'password' => 'drupal8',
-  'prefix' => '',
-  'host' => 'database',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
+
+if (isset($TUGBOAT_PROJECT)) {
+  $databases['default']['default'] = array (
+    'database' => 'tugboat',
+    'username' => 'tugboat',
+    'password' => 'tugboat',
+    'prefix' => '',
+    'host' => 'mysql',
+    'port' => '3306',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    'driver' => 'mysql',
+  );
+  // Use the TUGBOAT_REPO_ID to generate a hash salt for Tugboat sites.
+  $settings['hash_salt'] = hash('sha256', getenv('TUGBOAT_REPO_ID'));
+}
+else {
+  $databases['default']['default'] = array (
+    'database' => 'drupal8',
+    'username' => 'drupal8',
+    'password' => 'drupal8',
+    'prefix' => '',
+    'host' => 'database',
+    'port' => '3306',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    'driver' => 'mysql',
+  );
+}
 $settings['config_sync_directory'] = 'sites/default/files/config_L4LAr7TLA_GXMfK6peUM7FuV5RmfXTXIgHdS-0jaxb9-yLh0b7M8MeRfWzmfoQ6nNHc-0UpDuA/sync';
