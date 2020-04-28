@@ -766,6 +766,5 @@ $databases['default']['default'] = array (
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
-var_dump($databases);
 
 $settings['config_sync_directory'] = 'sites/default/files/config_L4LAr7TLA_GXMfK6peUM7FuV5RmfXTXIgHdS-0jaxb9-yLh0b7M8MeRfWzmfoQ6nNHc-0UpDuA/sync';
