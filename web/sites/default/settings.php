@@ -741,6 +741,17 @@ $settings['entity_update_batch_size'] = 50;
  */
 $settings['entity_update_backup'] = TRUE;
 
+$databases['default']['default'] = array (
+  'database' => 'drupal8',
+  'username' => 'drupal8',
+  'password' => 'drupal8',
+  'prefix' => '',
+  'host' => 'database',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+
 /**
  * Load local development override configuration, if available.
  *
@@ -755,17 +766,6 @@ $settings['entity_update_backup'] = TRUE;
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
+var_dump($databases);
 
-if (!isset($TUGBOAT_PROJECT)) {
-  $databases['default']['default'] = array (
-    'database' => 'drupal8',
-    'username' => 'drupal8',
-    'password' => 'drupal8',
-    'prefix' => '',
-    'host' => 'database',
-    'port' => '3306',
-    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-    'driver' => 'mysql',
-  );
-}
 $settings['config_sync_directory'] = 'sites/default/files/config_L4LAr7TLA_GXMfK6peUM7FuV5RmfXTXIgHdS-0jaxb9-yLh0b7M8MeRfWzmfoQ6nNHc-0UpDuA/sync';
