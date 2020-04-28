@@ -751,26 +751,12 @@ $settings['entity_update_backup'] = TRUE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
 
-if (isset($TUGBOAT_PROJECT)) {
-  $databases['default']['default'] = array (
-    'database' => 'tugboat',
-    'username' => 'tugboat',
-    'password' => 'tugboat',
-    'prefix' => '',
-    'host' => 'mysql',
-    'port' => '3306',
-    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-    'driver' => 'mysql',
-  );
-  // Use the TUGBOAT_REPO_ID to generate a hash salt for Tugboat sites.
-  $settings['hash_salt'] = hash('sha256', getenv('TUGBOAT_REPO_ID'));
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
 }
-else {
+
+if (!isset($TUGBOAT_PROJECT)) {
   $databases['default']['default'] = array (
     'database' => 'drupal8',
     'username' => 'drupal8',
