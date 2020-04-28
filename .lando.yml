@@ -2,7 +2,7 @@ name: drupal-88
 recipe: drupal8
 config:
   webroot: web
-  php: '7.3'
+  php: '7.4'
   xdebug: true
   conf:
     php: config/php.ini
