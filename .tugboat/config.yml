@@ -46,7 +46,7 @@ services:
         - cp "${TUGBOAT_ROOT}/.tugboat/settings.local.php" "${DOCROOT}/sites/default/"
 
         # Install/update packages managed by composer, including drush.
-        - composer update --optimize-autoloader
+        - COMPOSER_MEMORY_LIMIT=-1 composer update --optimize-autoloader
         # - composer install --optimize-autoloader
 
         # Copy Drupal's public files directory from an external server. The
